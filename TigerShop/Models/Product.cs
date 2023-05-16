@@ -9,13 +9,23 @@ namespace TigerShop.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ProductId { get; set; }
-        public string Name { get; set; }
+
+        [MaxLength(100)]
+        public string ProductName { get; set; }
+
+        [MaxLength(200)]
         public string Description { get; set; }
+
+        [MaxLength(8)]
         public int ProductPrice { get; set; }
         public int ArticleNumber { get; set; }
+
+        [MaxLength(20)]
         public string Color { get; set; }
+
+        [MaxLength(7)]
         public string Size { get; set; }
-        public int Stock { get; set; }
+        public int AmountInStock { get; set; }
         public string ImageUrl { get; set; }
     }
 }

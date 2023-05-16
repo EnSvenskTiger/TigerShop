@@ -56,7 +56,7 @@ namespace TigerShop.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ProductId,Name,Description,ProductPrice,ArticleNumber,Color,Size,Stock,ImageUrl")] Product product)
+        public async Task<IActionResult> Create([Bind("ProductId,ProductName,Description,ProductPrice,ArticleNumber,Color,Size,AmountInStock,ImageUrl")] Product product)
         {
             if (ModelState.IsValid)
             {
@@ -88,7 +88,7 @@ namespace TigerShop.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ProductId,Name,Description,ProductPrice,ArticleNumber,Color,Size,Stock,ImageUrl")] Product product)
+        public async Task<IActionResult> Edit(int id, [Bind("ProductId,ProductName,Description,ProductPrice,ArticleNumber,Color,Size,AmountInStock,ImageUrl")] Product product)
         {
             if (id != product.ProductId)
             {
