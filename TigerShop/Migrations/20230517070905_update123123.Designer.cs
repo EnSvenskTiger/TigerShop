@@ -12,8 +12,8 @@ using TigerShop.Data;
 namespace TigerShop.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230516121217_first")]
-    partial class first
+    [Migration("20230517070905_update123123")]
+    partial class update123123
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -33,13 +33,15 @@ namespace TigerShop.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CartId"));
 
-                    b.Property<int>("FK_ProductId")
+                    b.Property<int?>("FK_ProductId")
                         .HasColumnType("int");
 
                     b.Property<int>("NumberOfProducts")
+                        .HasMaxLength(8)
                         .HasColumnType("int");
 
                     b.Property<double>("TotalSum")
+                        .HasMaxLength(9)
                         .HasColumnType("float");
 
                     b.HasKey("CartId");
@@ -59,17 +61,38 @@ namespace TigerShop.Migrations
 
                     b.Property<string>("Address")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(35)
+                        .HasColumnType("nvarchar(35)");
 
-                    b.Property<string>("CustomerName")
+                    b.Property<string>("City")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
 
-                    b.Property<int>("Email")
-                        .HasColumnType("int");
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
-                    b.Property<int>("PhoneNumber")
-                        .HasColumnType("int");
+                    b.Property<string>("FirstMidName")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasMaxLength(25)
+                        .HasColumnType("nvarchar(25)");
+
+                    b.Property<string>("PhoneNumber")
+                        .IsRequired()
+                        .HasMaxLength(15)
+                        .HasColumnType("nvarchar(15)");
+
+                    b.Property<string>("PostalNumber")
+                        .IsRequired()
+                        .HasMaxLength(12)
+                        .HasColumnType("nvarchar(12)");
 
                     b.HasKey("CustomerId");
 
@@ -84,21 +107,20 @@ namespace TigerShop.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("OrderId"));
 
-                    b.Property<int>("FK_CartId")
+                    b.Property<int?>("FK_CartId")
                         .HasColumnType("int");
 
                     b.Property<int>("FK_CustomerId")
                         .HasColumnType("int");
 
-                    b.Property<string>("OrderNumber")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("OrderNumber")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("OrderPlaced")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("TotalSumOrder")
-                        .HasColumnType("int");
+                    b.Property<decimal>("TotalSumOrder")
+                        .HasColumnType("decimal(18,2)");
 
                     b.HasKey("OrderId");
 
@@ -117,34 +139,39 @@ namespace TigerShop.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ProductId"));
 
+                    b.Property<int>("AmountInStock")
+                        .HasColumnType("int");
+
                     b.Property<int>("ArticleNumber")
                         .HasColumnType("int");
 
                     b.Property<string>("Color")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
 
                     b.Property<string>("ImageUrl")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("ProductName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
-                    b.Property<int>("ProductPrice")
-                        .HasColumnType("int");
+                    b.Property<decimal>("ProductPrice")
+                        .HasMaxLength(8)
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("Size")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Stock")
-                        .HasColumnType("int");
+                        .HasMaxLength(7)
+                        .HasColumnType("nvarchar(7)");
 
                     b.HasKey("ProductId");
 
@@ -155,9 +182,7 @@ namespace TigerShop.Migrations
                 {
                     b.HasOne("TigerShop.Models.Product", "Product")
                         .WithMany()
-                        .HasForeignKey("FK_ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("FK_ProductId");
 
                     b.Navigation("Product");
                 });
@@ -166,9 +191,7 @@ namespace TigerShop.Migrations
                 {
                     b.HasOne("TigerShop.Models.Cart", "Cart")
                         .WithMany()
-                        .HasForeignKey("FK_CartId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("FK_CartId");
 
                     b.HasOne("TigerShop.Models.Customer", "Customer")
                         .WithMany()
