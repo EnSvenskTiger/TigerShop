@@ -12,8 +12,8 @@ using TigerShop.Data;
 namespace TigerShop.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230516151757_migrationrename")]
-    partial class migrationrename
+    [Migration("20230517070905_update123123")]
+    partial class update123123
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -71,8 +71,8 @@ namespace TigerShop.Migrations
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasMaxLength(30)
-                        .HasColumnType("nvarchar(30)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("FirstMidName")
                         .IsRequired()
@@ -164,9 +164,9 @@ namespace TigerShop.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<int>("ProductPrice")
+                    b.Property<decimal>("ProductPrice")
                         .HasMaxLength(8)
-                        .HasColumnType("int");
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("Size")
                         .IsRequired()

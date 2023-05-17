@@ -17,7 +17,7 @@ namespace TigerShop.Models
         public string Description { get; set; }
 
         [MaxLength(8)]
-        public int ProductPrice { get; set; }
+        public decimal ProductPrice { get; set; }
         public int ArticleNumber { get; set; }
 
         [MaxLength(20)]
@@ -26,6 +26,7 @@ namespace TigerShop.Models
         [MaxLength(7)]
         public string Size { get; set; }
         public int AmountInStock { get; set; }
+        
         public string ImageUrl { get; set; }
     }
 }
