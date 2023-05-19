@@ -4,12 +4,14 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>WebbShop</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
+
+@*<p>
+  @*  <a asp-action="Create">Create New</a>*@
 </p>
-<table class="table">
+@*<table class="table">
+
     <thead>
         <tr>
             <th>
@@ -39,10 +41,39 @@
             <th></th>
         </tr>
     </thead>
-    <tbody>
+    <tbody>**@
 @foreach (var item in Model) {
-        <tr>
-            <td>
+  <div class="row row-cols-1 row-cols-md-4 g-4">
+    <div class="col">
+        <div class="card" style="width: 18rem;">
+      <img src="/Products/Tiger.png" class="card-img-top" alt="En tiger tröja">
+      <div class="card-body">
+            <h5 class="card-title">@Html.DisplayFor(model => item.ProductName)</h5>
+            <p class="card-text"> @Html.DisplayFor(model => item.ProductPrice)kr</p>
+      </div>
+      <div class="card-body">
+                        <a class="btn btn-primary" asp-action="Details" asp-route-id="@item.ProductId">Details</a>
+         <a class="btn btn-primary" asp-action="Index" asp-controller="Carts">Cart</a>
+         </div>
+      </div>
+    </div>
+    <div class="col">
+        <div class="card" style="width: 18rem;">
+      <img src="/Products/Tiger.png" class="card-img-top" alt="En tiger tröja">
+      <div class="card-body">
+            <h5 class="card-title">@Html.DisplayFor(model => item.ProductName)</h5>
+            <p class="card-text"> @Html.DisplayFor(model => item.ProductPrice)kr</p>
+      </div>
+      <div class="card-body">
+                        <a class="btn btn-primary" asp-action="Details" asp-route-id="@item.ProductId">Details</a>
+         <a class="btn btn-primary" asp-action="Index" asp-controller="Carts">Cart</a>
+         </div>
+      </div>
+    </div>
+  </div>
+
+
+@*            <td>
                 @Html.DisplayFor(modelItem => item.ProductName)
             </td>
             <td>
@@ -66,12 +97,13 @@
             <td>
                 @Html.DisplayFor(modelItem => item.ImageUrl)
             </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.ProductId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ProductId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.ProductId">Delete</a>
-            </td>
-        </tr>
+            <td>*@
+
+     @*         @*  <a asp-action="Edit" asp-route-id="@item.ProductId">Edit</a> |*@
+               @* <a asp-action="Details" asp-route-id="@item.ProductId">Details</a>*@
+  @*              <a asp-action="Delete" asp-route-id="@item.ProductId">Delete</a>*@
+            
+        
 }
     </tbody>
 </table>
