@@ -13,6 +13,10 @@ namespace TigerShop.Models
         public int OrderNumber { get; set; }
         public DateTime OrderPlaced { get; set; }
 
+
+        //Ska denna vara en FK till Cart? Ska kart vara Main key?
+        //Ska denna länkas mot cart och göra en for each add sum funktion? 
+        //Ska den ha samma värde som totalsum i kart eller ska den ha en till klass för att spara total sum?
         public decimal TotalSumOrder { get; set; }
 
         [ForeignKey("Customer")]
